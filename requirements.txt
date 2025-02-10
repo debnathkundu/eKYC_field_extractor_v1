@@ -3,3 +3,5 @@ doctr
 ultralytics
 transformers
 python-doctr
+libgl1-mesa-glx
+
