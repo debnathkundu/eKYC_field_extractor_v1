@@ -2,3 +2,4 @@ streamlit
 doctr
 ultralytics
 transformers
+python-doctr
