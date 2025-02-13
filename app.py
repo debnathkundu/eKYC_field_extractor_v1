@@ -11,8 +11,8 @@ from ultralytics import YOLO
 from v1_raw import *
 
 # -------------------- Initialize Global Models --------------------
-ocr_model = ocr_predictor(det_arch='db_resnet50', reco_arch='parseq', pretrained=True).cuda()
-yolo_model = YOLO('/workspaces/eKYC_field_extractor_v1/app.py')
+ocr_model = ocr_predictor(det_arch='db_resnet50', reco_arch='parseq', pretrained=True).cpu() #.cuda()
+yolo_model = YOLO('/home/awiros-tech/Vodafone_KYC/streamlit_v1/yolo_address_filter_best_10_2_2025.pt').cpu()
 
 # -------------------- Utility Functions --------------------
 def filter_text(res):
@@ -33,6 +33,8 @@ def infer(image):
     image_bytes.seek(0)
     img = DocumentFile.from_images([image_bytes.getvalue()])
     result = ocr_model(img)
+    with open("./ocr_result_raw.txt", "w") as f:
+        f.write(str(result))
     rendered_text = result.render()
     filtered_text = filter_text(result)
     return rendered_text, filtered_text
@@ -48,7 +50,13 @@ def extract_aadhar_rear_details(image, yolo_model, ocr_model):
 
 # -------------------- Streamlit Interface --------------------
 st.title("KYC Document Field Extractor")
+
 st.markdown("""
+    <h5 style='color:maroon;'>-- v2 : improved PAN Card Heuristics --</h5>
+    """, unsafe_allow_html=True)
+
+st.markdown("""
+            
 Hello! This is a tiny web-app to help in data extraction for eKYC purposes. Please assist us in evaluating its functionalities. \n
 Choose the corresponding option for eKYC & upload the appropriate document.
 - **Option 1 - through PAN Front**: Name, Father's Name, DOB, PAN number will be extracted.
