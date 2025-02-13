@@ -35,8 +35,8 @@ def infer(image):
     image_bytes.seek(0)
     img = DocumentFile.from_images([image_bytes.getvalue()])
     result = ocr_model(img)
-    with open("./ocr_result_raw.txt", "w") as f:
-        f.write(str(result))
+    # with open("./ocr_result_raw.txt", "w") as f:
+    #     f.write(str(result))
     rendered_text = result.render()
     filtered_text = filter_text(result)
     return rendered_text, filtered_text
