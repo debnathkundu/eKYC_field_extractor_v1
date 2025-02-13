@@ -8,6 +8,8 @@ from doctr.models import ocr_predictor
 from doctr.io import DocumentFile
 from ultralytics import YOLO
 
+torch.classes.__path__ = [] # add this line to manually set it to empty.
+
 from v1_raw import *
 
 # -------------------- Initialize Global Models --------------------
