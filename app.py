@@ -12,7 +12,9 @@ from v1_raw import *
 
 # -------------------- Initialize Global Models --------------------
 ocr_model = ocr_predictor(det_arch='db_resnet50', reco_arch='parseq', pretrained=True).cpu() #.cuda()
-yolo_model = YOLO('/home/awiros-tech/Vodafone_KYC/streamlit_v1/yolo_address_filter_best_10_2_2025.pt').cpu()
+yolo_model = YOLO('/workspaces/eKYC_field_extractor_v1/yolo_address_filter_best_10_2_2025.pt').cpu()
+
+
 
 # -------------------- Utility Functions --------------------
 def filter_text(res):
