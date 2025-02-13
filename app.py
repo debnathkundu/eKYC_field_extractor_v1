@@ -3,7 +3,7 @@ import json
 import re
 from io import BytesIO
 from PIL import Image
-from transformers import pipeline
+# from transformers import pipeline
 from doctr.models import ocr_predictor
 from doctr.io import DocumentFile
 from ultralytics import YOLO
