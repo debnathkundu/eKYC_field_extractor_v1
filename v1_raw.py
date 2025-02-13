@@ -2,7 +2,7 @@ import re
 import json
 import numpy as np
 import torch
-from transformers import pipeline
+# from transformers import pipeline
 from doctr.models import ocr_predictor
 from doctr.io import DocumentFile
 from ultralytics import YOLO
